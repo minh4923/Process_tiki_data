@@ -80,6 +80,6 @@ def crawl_all_taxonomy():
     with open("data/taxonomy.json", "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
 
-    print(f"✅ Hoàn tất crawl. Đã lưu {len(result)} danh mục vào data/taxonomy.json")``        
+    print(f"✅ Hoàn tất crawl. Đã lưu {len(result)} danh mục vào data/taxonomy.json")        
 if __name__ == "__main__":
     crawl_all_taxonomy()

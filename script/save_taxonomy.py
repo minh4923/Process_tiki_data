@@ -1,5 +1,5 @@
 import json
-from config.settings import get_pg_conn, get_redis_conn  # bạn cần có file config
+from config.settings import get_pg_conn
 
 def save_taxonomy():
     with open("data/taxonomy.json", encoding="utf-8") as f:
@@ -15,19 +15,21 @@ def save_taxonomy():
             name TEXT NOT NULL,
             level INT NOT NULL,
             parent_id BIGINT,
+            url_path TEXT,
             is_leaf BOOLEAN DEFAULT FALSE
         );
     """)
     for cat in data:
         cursor.execute("""
             INSERT INTO dim_category (category_id, name, level, parent_id, url_path, is_leaf)
-            VALUES (%s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s)
             ON CONFLICT (category_id) DO NOTHING
         """, (
             cat["id"],
             cat["name"],
             cat.get("level"),
             cat.get("parent_id"),
+            cat.get("url_path"),
             cat.get("is_leaf", False)
         ))
 
