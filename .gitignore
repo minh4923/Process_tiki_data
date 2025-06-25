@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment config
+.env
+
+# IDE
+.vscode/
+.idea/
+
+#data 
+data/products/
